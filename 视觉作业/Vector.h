@@ -3,27 +3,27 @@
 template<typename T>
 class Vector {
 private:
-    int size_;      // Ê¹ÓÃÏÂ»®ÏßÃüÃû·¨
+    int size_;      
     int capacity_;
     T* buf_;
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     Vector() : size_(0), capacity_(2), buf_(new T[2]) {}
 
-    // Îö¹¹º¯Êı
+    // ææ„å‡½æ•°
     ~Vector() {
         delete[] buf_;
     }
 
-    // ¿½±´¹¹Ôìº¯Êı
+    // æ‹·è´æ„é€ å‡½æ•°
     Vector(const Vector& x) : size_(x.size_), capacity_(x.capacity_), buf_(new T[x.capacity_]) {
         for (int i = 0; i < size_; i++) {
             buf_[i] = x.buf_[i];
         }
     }
 
-    // ¸³ÖµÔËËã·ûÖØÔØº¯Êı
+    // èµ‹å€¼è¿ç®—ç¬¦é‡è½½å‡½æ•°
     Vector& operator=(Vector x) {
         if (this == &x) {
             return *this;
@@ -39,12 +39,12 @@ public:
         return *this;
     }
 
-    // []ÔËËã·ûÖØÔØº¯Êı - ÓÃÓÚÈ¡³öµÚindex¸öÔªËØ
+    // []è¿ç®—ç¬¦é‡è½½å‡½æ•° - ç”¨äºå–å‡ºç¬¬indexä¸ªå…ƒç´ 
     T& operator[](int index) {
         return buf_[index];
     }
 
-    // ==ÔËËã·ûÖØÔØº¯Êı - ÅĞ¶ÏÁ½¸öVector¶ÔÏóÊÇ·ñÏàµÈ
+    // ==è¿ç®—ç¬¦é‡è½½å‡½æ•° - åˆ¤æ–­ä¸¤ä¸ªVectorå¯¹è±¡æ˜¯å¦ç›¸ç­‰
     bool operator==(const Vector& x) const {
         if (size_ != x.size_) {
             return false;
@@ -57,7 +57,7 @@ public:
         return true;
     }
 
-    // ÏòVector¶ÔÏóÎ²²¿Ìí¼ÓÔªËØ
+    // å‘Vectorå¯¹è±¡å°¾éƒ¨æ·»åŠ å…ƒç´ 
     void push_back(T x) {
         if (size_ >= capacity_) {
             capacity_ *= 2;
@@ -75,12 +75,12 @@ public:
         size_++;
     }
 
-    // É¾³ıVector¶ÔÏó×îºóÒ»¸öÔªËØ
+    // åˆ é™¤Vectorå¯¹è±¡æœ€åä¸€ä¸ªå…ƒç´ 
     void pop_back() {
         size_--;
     }
 
-    // ÔÚÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+    // åœ¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
     void insert(int index, T x) {
         size_++;
         if (size_ >= capacity_) {
@@ -100,7 +100,7 @@ public:
         buf_ = buf2;
     }
 
-    // É¾³ıÖ¸¶¨Î»ÖÃµÄÔªËØ
+    // åˆ é™¤æŒ‡å®šä½ç½®çš„å…ƒç´ 
     void erase(int index) {
         size_--;
         for (int i = index; i < size_; i++) {
@@ -108,7 +108,7 @@ public:
         }
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄµÚÒ»¸öÔªËØ
+    // è·å–Vectorå¯¹è±¡çš„ç¬¬ä¸€ä¸ªå…ƒç´ 
     T front() {
         T temp = buf_[0];
         size_--;
@@ -118,33 +118,33 @@ public:
         return temp;
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄ×îºóÒ»¸öÔªËØ
+    // è·å–Vectorå¯¹è±¡çš„æœ€åä¸€ä¸ªå…ƒç´ 
     T back() {
         size_--;
         return buf_[size_];
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄÔªËØÊ×µØÖ·µÄµü´úÆ÷
+    // è·å–Vectorå¯¹è±¡çš„å…ƒç´ é¦–åœ°å€çš„è¿­ä»£å™¨
     T* begin() {
         return buf_;
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄ×îºóÒ»¸öÔªËØµÄÏÂÒ»¸öµØÖ·µÄµü´úÆ÷
+    // è·å–Vectorå¯¹è±¡çš„æœ€åä¸€ä¸ªå…ƒç´ çš„ä¸‹ä¸€ä¸ªåœ°å€çš„è¿­ä»£å™¨
     T* end() {
         return buf_ + size_;
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄÔªËØ¸öÊı
+    // è·å–Vectorå¯¹è±¡çš„å…ƒç´ ä¸ªæ•°
     int size() const {
         return size_;
     }
 
-    // »ñÈ¡Vector¶ÔÏóµÄ×î´óÈİÁ¿
+    // è·å–Vectorå¯¹è±¡çš„æœ€å¤§å®¹é‡
     int capacity() const {
         return capacity_;
     }
 
-    // ÅĞ¶ÏVector¶ÔÏóÊÇ·ñÎª¿Õ
+    // åˆ¤æ–­Vectorå¯¹è±¡æ˜¯å¦ä¸ºç©º
     bool empty() const {
         return size_ == 0;
     }
